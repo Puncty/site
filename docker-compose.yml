@@ -5,12 +5,8 @@ services:
         build: .
         container_name: puncty_site
         restart: always
-        ports:
-            - "${SERVER_PORT}:3000"
         env_file:
             - ./.env
-        volumes:
-            - "./data:/app/data"
         labels:
             caddy: puncty.de
             caddy.reverse_proxy: "{{upstreams http 8001}}"
