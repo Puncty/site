@@ -5,9 +5,15 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
-var TOKEN = os.Getenv("PUNCTY_AUTH_TOKEN")
+var token string
+
+func init() {
+	godotenv.Load(".env")
+	token = os.Getenv("PUNCTY_AUTH_TOKEN")
+}
 
 func main() {
 	r := gin.Default()
@@ -21,6 +27,8 @@ func main() {
 			if err != nil {
 				ctx.Error(err)
 			}
+		} else {
+			ctx.AbortWithStatus(401)
 		}
 	})
 
@@ -28,7 +36,7 @@ func main() {
 }
 
 func verifyUpload(ctx *gin.Context) bool {
-	return ctx.Request.Header.Get("Authorization") == TOKEN
+	return ctx.Request.Header.Get("Authorization") == token
 }
 
 func processUpload(ctx *gin.Context) error {
