@@ -4,4 +4,6 @@ WORKDIR /app
 
 COPY ./* /app/
 
-CMD [ "go", "run", "./main.go" ]
+RUN go build
+
+CMD [ "./site" ]
