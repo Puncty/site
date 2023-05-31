@@ -24,7 +24,7 @@ func main() {
 		}
 	})
 
-	r.Run()
+	r.Run("127.0.0.1", ":8001")
 }
 
 func verifyUpload(ctx *gin.Context) bool {
