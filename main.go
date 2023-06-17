@@ -46,7 +46,7 @@ func processUpload(ctx *gin.Context) error {
 	}
 	defer uploadFile.Close()
 
-	downloadFile, err := os.OpenFile("./public/puncty.apk", os.O_CREATE|os.O_WRONLY, 0755)
+	downloadFile, err := os.OpenFile("./data/app-release-unsigned", os.O_CREATE|os.O_WRONLY, 0755)
 	if err != nil {
 		return err
 	}
